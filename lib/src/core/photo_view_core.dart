@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:photo_view/photo_view.dart'
+import 'package:fb_photo_view/photo_view.dart'
     show
         PhotoViewHeroAttributes,
         PhotoViewImageScaleEndCallback,
@@ -10,12 +10,12 @@ import 'package:photo_view/photo_view.dart'
         PhotoViewImageTapUpCallback,
         PhotoViewScaleState,
         ScaleStateCycle;
-import 'package:photo_view/src/controller/photo_view_controller.dart';
-import 'package:photo_view/src/controller/photo_view_controller_delegate.dart';
-import 'package:photo_view/src/controller/photo_view_scalestate_controller.dart';
-import 'package:photo_view/src/core/photo_view_gesture_detector.dart';
-import 'package:photo_view/src/core/photo_view_hit_corners.dart';
-import 'package:photo_view/src/utils/photo_view_utils.dart';
+import 'package:fb_photo_view/src/controller/photo_view_controller.dart';
+import 'package:fb_photo_view/src/controller/photo_view_controller_delegate.dart';
+import 'package:fb_photo_view/src/controller/photo_view_scalestate_controller.dart';
+import 'package:fb_photo_view/src/core/photo_view_gesture_detector.dart';
+import 'package:fb_photo_view/src/core/photo_view_hit_corners.dart';
+import 'package:fb_photo_view/src/utils/photo_view_utils.dart';
 
 const _defaultDecoration = const BoxDecoration(
   color: const Color.fromRGBO(0, 0, 0, 0.0),

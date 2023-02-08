@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:photo_view/src/controller/photo_view_controller.dart';
+import 'package:fb_photo_view/src/controller/photo_view_controller.dart';
 import 'package:test/test.dart';
 
 void main() {

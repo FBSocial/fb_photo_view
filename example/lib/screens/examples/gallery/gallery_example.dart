@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
-import 'package:photo_view_example/screens/app_bar.dart';
-import 'package:photo_view_example/screens/examples/gallery/gallery_example_item.dart';
+import 'package:fb_photo_view/photo_view.dart';
+import 'package:fb_photo_view/photo_view_gallery.dart';
+import 'package:fb_photo_view_example/screens/app_bar.dart';
+import 'package:fb_photo_view_example/screens/examples/gallery/gallery_example_item.dart';
 import 'dart:io';
 
 import '../custom_page_route_builder.dart';

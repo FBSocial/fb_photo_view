@@ -17,7 +17,7 @@ Add `photo_view` as a dependency in your pubspec.yaml file ([what?](https://flut
 
 Import Photo View:
 ```dart
-import 'package:photo_view/photo_view.dart';
+import 'package:fb_photo_view/photo_view.dart';
 ```
 
 ## Docs & API
@@ -58,8 +58,8 @@ To show several images and let user change between them, use `PhotoViewGallery`.
 Read more about the gallery [here](https://pub.dartlang.org/documentation/photo_view/latest/photo_view_gallery/PhotoViewGallery-class.html).
 
 ```dart
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
+import 'package:fb_photo_view/photo_view.dart';
+import 'package:fb_photo_view/photo_view_gallery.dart';
 // ...
 
 

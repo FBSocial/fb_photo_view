@@ -1,12 +1,13 @@
+import 'package:fb_photo_view_example/screens/examples/controller_example.dart';
+import 'package:fb_photo_view_example/screens/examples/custom_child_examples.dart';
+import 'package:fb_photo_view_example/screens/examples/dialog_example.dart';
+import 'package:fb_photo_view_example/screens/examples/full_screen_examples.dart';
+import 'package:fb_photo_view_example/screens/examples/gallery/gallery_example.dart';
+import 'package:fb_photo_view_example/screens/examples/hero_example.dart';
+import 'package:fb_photo_view_example/screens/examples/inline_examples.dart';
+import 'package:fb_photo_view_example/screens/examples/rotation_examples.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_view_example/screens/examples/controller_example.dart';
-import 'package:photo_view_example/screens/examples/custom_child_examples.dart';
-import 'package:photo_view_example/screens/examples/dialog_example.dart';
-import 'package:photo_view_example/screens/examples/full_screen_examples.dart';
-import 'package:photo_view_example/screens/examples/gallery/gallery_example.dart';
-import 'package:photo_view_example/screens/examples/hero_example.dart';
-import 'package:photo_view_example/screens/examples/inline_examples.dart';
-import 'package:photo_view_example/screens/examples/rotation_examples.dart';
+
 import './app_bar.dart';
 
 class HomeScreen extends StatelessWidget {

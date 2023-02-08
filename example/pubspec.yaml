@@ -1,4 +1,4 @@
-name: photo_view_example
+name: fb_photo_view_example
 description: Example of how to use Photo View
 
 environment:
@@ -6,7 +6,7 @@ environment:
 
 dependencies:
 #  flutter_svg:
-  photo_view:
+  fb_photo_view:
     path: ../
   flutter:
     sdk: flutter
