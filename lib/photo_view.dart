@@ -614,51 +614,7 @@ class _PhotoViewState extends State<PhotoView> {
           } else {
             child = _buildLoading();
           }
-          return GestureDetector(
-            onTapUp: widget.onTapUp != null
-                ? (details) => widget.onTapUp!(context, details, null)
-                : null,
-            onScaleUpdate: widget.onScaleUpdate != null
-                ? (details) {
-                    widget.onScaleUpdate!(
-                        context,
-                        details,
-                        null,
-                        const PhotoViewControllerValue(
-                            position: Offset.zero,
-                            scale: null,
-                            rotation: null,
-                            rotationFocusPoint: null));
-                  }
-                : null,
-            onScaleStart: widget.onScaleStart != null
-                ? (details) {
-                    widget.onScaleStart!(
-                        context,
-                        details,
-                        null,
-                        const PhotoViewControllerValue(
-                            position: Offset.zero,
-                            rotation: null,
-                            scale: null,
-                            rotationFocusPoint: null));
-                  }
-                : null,
-            onScaleEnd: widget.onScaleEnd != null
-                ? (details) {
-                    widget.onScaleEnd!(
-                        context,
-                        details,
-                        null,
-                        const PhotoViewControllerValue(
-                            position: Offset.zero,
-                            rotation: null,
-                            scale: null,
-                            rotationFocusPoint: null));
-                  }
-                : null,
-            child: child,
-          );
+          return child!;
         });
   }
 
@@ -669,51 +625,7 @@ class _PhotoViewState extends State<PhotoView> {
     } else {
       child = _buildWrapperImage(context, constraints);
     }
-    return GestureDetector(
-      onTapUp: widget.onTapUp != null
-          ? (details) => widget.onTapUp!(context, details, null)
-          : null,
-      onScaleUpdate: widget.onScaleUpdate != null
-          ? (details) {
-              widget.onScaleUpdate!(
-                  context,
-                  details,
-                  null,
-                  const PhotoViewControllerValue(
-                      position: Offset.zero,
-                      rotation: null,
-                      rotationFocusPoint: null,
-                      scale: null));
-            }
-          : null,
-      onScaleStart: widget.onScaleStart != null
-          ? (details) {
-              widget.onScaleStart!(
-                  context,
-                  details,
-                  null,
-                  const PhotoViewControllerValue(
-                      position: Offset.zero,
-                      rotation: null,
-                      scale: null,
-                      rotationFocusPoint: null));
-            }
-          : null,
-      onScaleEnd: widget.onScaleEnd != null
-          ? (details) {
-              widget.onScaleEnd!(
-                  context,
-                  details,
-                  null,
-                  const PhotoViewControllerValue(
-                      position: Offset.zero,
-                      rotationFocusPoint: null,
-                      scale: null,
-                      rotation: null));
-            }
-          : null,
-      child: child,
-    );
+    return child!;
   }
 
   Widget _buildWrapperImage(BuildContext context, BoxConstraints constraints) {

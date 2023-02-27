@@ -252,53 +252,18 @@ class _PhotoViewGalleryState extends State<PhotoViewGallery> {
   @override
   Widget build(BuildContext context) {
     // Enable corner hit test
-    return GestureDetector(
-      onScaleUpdate: (details) {
-        widget.onScaleUpdate!(
-            context,
-            details,
-            null,
-            const PhotoViewControllerValue(
-                position: Offset.zero,
-                rotation: null,
-                scale: null,
-                rotationFocusPoint: null));
-      },
-      onScaleStart: (details) {
-        widget.onScaleStart!(
-            context,
-            details,
-            null,
-            const PhotoViewControllerValue(
-                position: Offset.zero,
-                rotation: null,
-                scale: null,
-                rotationFocusPoint: null));
-      },
-      onScaleEnd: (details) {
-        widget.onScaleEnd!(
-            context,
-            details,
-            null,
-            const PhotoViewControllerValue(
-                position: Offset.zero,
-                rotation: null,
-                scale: null,
-                rotationFocusPoint: null));
-      },
-      child: PhotoViewGestureDetectorScope(
-        axis: widget.scrollDirection,
-        child: PageView.builder(
-          reverse: widget.reverse,
-          controller: _controller,
-          onPageChanged: widget.onPageChanged,
-          itemCount: itemCount,
-          itemBuilder: _buildItem,
-          scrollDirection: widget.scrollDirection,
-          physics: widget.scrollPhysics,
-          allowImplicitScrolling: widget.pageViewAllowImplicitScrolling,
-          pageSnapping: false,
-        ),
+    return PhotoViewGestureDetectorScope(
+      axis: widget.scrollDirection,
+      child: PageView.builder(
+        reverse: widget.reverse,
+        controller: _controller,
+        onPageChanged: widget.onPageChanged,
+        itemCount: itemCount,
+        itemBuilder: _buildItem,
+        scrollDirection: widget.scrollDirection,
+        physics: widget.scrollPhysics,
+        allowImplicitScrolling: widget.pageViewAllowImplicitScrolling,
+        pageSnapping: false,
       ),
     );
   }
