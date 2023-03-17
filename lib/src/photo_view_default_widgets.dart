@@ -46,22 +46,28 @@ class PhotoViewDefaultLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.transparent,
-        child: Stack(children: <Widget>[
-          holderWiget == null ? Container() : Center(
-            child: holderWiget,
-          ),
-          Center(
-            child: Container(
-              width: 16,
-              height: 16,
-              child: const CircularProgressIndicator(strokeWidth: 2),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Colors.transparent,
+          child: Stack(children: <Widget>[
+            holderWiget == null
+                ? Container()
+                : Center(
+                    child: holderWiget,
+                  ),
+            Center(
+              child: Container(
+                width: 16,
+                height: 16,
+                child: const CircularProgressIndicator(strokeWidth: 2),
+              ),
             ),
-          ),
-        ])
+          ])),
     );
   }
 }
