@@ -302,7 +302,7 @@ class PhotoViewCoreState extends State<PhotoViewCore>
   }
 
   void onTapDown(TapDownDetails details) {
-    widget.onTapDown?.call(context, details, controller.value);
+    widget.onTapDown?.call(context, details, controller!.value);
     _positionAnimationController.stop();
   }
 
