@@ -781,7 +781,7 @@ typedef PhotoViewImageTapUpCallback = Function(
 typedef PhotoViewImageTapDownCallback = Function(
   BuildContext context,
   TapDownDetails details,
-  PhotoViewControllerValue controllerValue,
+  PhotoViewControllerValue? controllerValue,
 );
 
 typedef PhotoViewImageScaleUpdateCallback = Function(
