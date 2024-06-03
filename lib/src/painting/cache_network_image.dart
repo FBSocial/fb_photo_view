@@ -48,28 +48,28 @@ class CacheNetworkImage
     return SynchronousFuture<CacheNetworkImage>(this);
   }
 
-  @override
-  ImageStreamCompleter load(
-      image_provider.NetworkImage key, image_provider.DecoderCallback decode) {
-    // Ownership of this controller is handed off to [_loadAsync]; it is that
-    // method's responsibility to close the controller's stream when the image
-    // has been loaded or an error is thrown.
-    final StreamController<ImageChunkEvent> chunkEvents =
-        StreamController<ImageChunkEvent>();
-
-    return MultiFrameImageStreamCompleter(
-      codec: _loadAsync(key as CacheNetworkImage, chunkEvents, decode),
-      chunkEvents: chunkEvents.stream,
-      scale: key.scale,
-      informationCollector: () {
-        return <DiagnosticsNode>[
-          DiagnosticsProperty<image_provider.ImageProvider>(
-              'Image provider', this),
-          DiagnosticsProperty<image_provider.NetworkImage>('Image key', key),
-        ];
-      },
-    );
-  }
+  // @override
+  // ImageStreamCompleter load(
+  //     image_provider.NetworkImage key, image_provider.DecoderCallback decode) {
+  //   // Ownership of this controller is handed off to [_loadAsync]; it is that
+  //   // method's responsibility to close the controller's stream when the image
+  //   // has been loaded or an error is thrown.
+  //   final StreamController<ImageChunkEvent> chunkEvents =
+  //       StreamController<ImageChunkEvent>();
+  //
+  //   return MultiFrameImageStreamCompleter(
+  //     codec: _loadAsync(key as CacheNetworkImage, chunkEvents, decode),
+  //     chunkEvents: chunkEvents.stream,
+  //     scale: key.scale,
+  //     informationCollector: () {
+  //       return <DiagnosticsNode>[
+  //         DiagnosticsProperty<image_provider.ImageProvider>(
+  //             'Image provider', this),
+  //         DiagnosticsProperty<image_provider.NetworkImage>('Image key', key),
+  //       ];
+  //     },
+  //   );
+  // }
 
   // Do not access this field directly; use [_httpClient] instead.
   // We set `autoUncompress` to false to ensure that we can trust the value of
@@ -88,52 +88,52 @@ class CacheNetworkImage
     return client;
   }
 
-  Future<ui.Codec> _loadAsync(
-    CacheNetworkImage key,
-    StreamController<ImageChunkEvent> chunkEvents,
-    image_provider.DecoderCallback decode,
-  ) async {
-    try {
-      assert(key == this);
-
-      File file = (await getFileFromCache?.call(key.url))!;
-      if (file != null && file.existsSync()) {
-        var bytes = file.readAsBytesSync();
-        return decode(bytes);
-      }
-
-      final Uri resolved = Uri.base.resolve(key.url);
-      final HttpClientRequest request = await _httpClient.getUrl(resolved);
-      headers?.forEach((String name, String value) {
-        request.headers.add(name, value);
-      });
-      final HttpClientResponse response = await request.close();
-      if (response.statusCode != HttpStatus.ok) {
-        // The network may be only temporarily unavailable, or the file will be
-        // added on the server later. Avoid having future calls to resolve
-        // fail to check the network again.
-        PaintingBinding.instance!.imageCache!.evict(key);
-        throw image_provider.NetworkImageLoadException(
-            statusCode: response.statusCode, uri: resolved);
-      }
-
-      final Uint8List bytes = await consolidateHttpClientResponseBytes(
-        response,
-        onBytesReceived: (int cumulative, int? total) {
-          chunkEvents.add(ImageChunkEvent(
-            cumulativeBytesLoaded: cumulative,
-            expectedTotalBytes: total,
-          ));
-        },
-      );
-      if (bytes.lengthInBytes == 0)
-        throw Exception('NetworkImage is an empty file: $resolved');
-      await saveFileToCache?.call(url, bytes);
-      return decode(bytes);
-    } finally {
-      chunkEvents.close();
-    }
-  }
+  // Future<ui.Codec> _loadAsync(
+  //   CacheNetworkImage key,
+  //   StreamController<ImageChunkEvent> chunkEvents,
+  //   image_provider.DecoderCallback decode,
+  // ) async {
+  //   try {
+  //     assert(key == this);
+  //
+  //     File file = (await getFileFromCache?.call(key.url))!;
+  //     if (file != null && file.existsSync()) {
+  //       var bytes = file.readAsBytesSync();
+  //       return decode(bytes);
+  //     }
+  //
+  //     final Uri resolved = Uri.base.resolve(key.url);
+  //     final HttpClientRequest request = await _httpClient.getUrl(resolved);
+  //     headers?.forEach((String name, String value) {
+  //       request.headers.add(name, value);
+  //     });
+  //     final HttpClientResponse response = await request.close();
+  //     if (response.statusCode != HttpStatus.ok) {
+  //       // The network may be only temporarily unavailable, or the file will be
+  //       // added on the server later. Avoid having future calls to resolve
+  //       // fail to check the network again.
+  //       PaintingBinding.instance!.imageCache!.evict(key);
+  //       throw image_provider.NetworkImageLoadException(
+  //           statusCode: response.statusCode, uri: resolved);
+  //     }
+  //
+  //     final Uint8List bytes = await consolidateHttpClientResponseBytes(
+  //       response,
+  //       onBytesReceived: (int cumulative, int? total) {
+  //         chunkEvents.add(ImageChunkEvent(
+  //           cumulativeBytesLoaded: cumulative,
+  //           expectedTotalBytes: total,
+  //         ));
+  //       },
+  //     );
+  //     if (bytes.lengthInBytes == 0)
+  //       throw Exception('NetworkImage is an empty file: $resolved');
+  //     await saveFileToCache?.call(url, bytes);
+  //     return decode(bytes);
+  //   } finally {
+  //     chunkEvents.close();
+  //   }
+  // }
 
   @override
   bool operator ==(Object other) {
