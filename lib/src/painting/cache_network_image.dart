@@ -49,8 +49,8 @@ class CacheNetworkImage
   }
 
   @override
-  ImageStreamCompleter load(
-      image_provider.NetworkImage key, image_provider.DecoderCallback decode) {
+  ImageStreamCompleter loadImage(
+      image_provider.NetworkImage key, image_provider.ImageDecoderCallback decode) {
     // Ownership of this controller is handed off to [_loadAsync]; it is that
     // method's responsibility to close the controller's stream when the image
     // has been loaded or an error is thrown.
@@ -91,7 +91,7 @@ class CacheNetworkImage
   Future<ui.Codec> _loadAsync(
     CacheNetworkImage key,
     StreamController<ImageChunkEvent> chunkEvents,
-    image_provider.DecoderCallback decode,
+    image_provider.ImageDecoderCallback decode,
   ) async {
     try {
       assert(key == this);
@@ -99,7 +99,7 @@ class CacheNetworkImage
       File file = (await getFileFromCache?.call(key.url))!;
       if (file != null && file.existsSync()) {
         var bytes = file.readAsBytesSync();
-        return decode(bytes);
+        return decode(await ui.ImmutableBuffer.fromUint8List(bytes));
       }
 
       final Uri resolved = Uri.base.resolve(key.url);
@@ -129,7 +129,7 @@ class CacheNetworkImage
       if (bytes.lengthInBytes == 0)
         throw Exception('NetworkImage is an empty file: $resolved');
       await saveFileToCache?.call(url, bytes);
-      return decode(bytes);
+      return decode(await ui.ImmutableBuffer.fromUint8List(bytes));
     } finally {
       chunkEvents.close();
     }
@@ -144,7 +144,7 @@ class CacheNetworkImage
   }
 
   @override
-  int get hashCode => ui.hashValues(url, scale);
+  int get hashCode => Object.hash(url, scale);
 
   @override
   String toString() =>
